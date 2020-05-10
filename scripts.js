@@ -45,7 +45,7 @@ function factorSelect(id) {
 
 function drawTree(startX, startY, len, angle, branchWidth, color1, color2) {
   ctx.beginPath();
-  ctx.save(); // guarda el estado actual del canvas (?)
+  ctx.save(); // guarda el estado actual del canvas
   ctx.strokeStyle = color1;
   ctx.fillStyle = color2;
   ctx.lineWidth = branchWidth;
@@ -56,6 +56,10 @@ function drawTree(startX, startY, len, angle, branchWidth, color1, color2) {
   ctx.stroke();
   if (len < 10) {
     //corto para evitar un bucle infinito
+    // Dibujo las hojas:
+    ctx.beginPath();
+    ctx.arc(0, -len, 10, 0, Math.PI / 2);
+    ctx.fill();
     ctx.restore(); //vuelve el canvas al estado guardo con ctx.save()
     return;
   }
@@ -74,8 +78,8 @@ drawTree(
   canvas.height - 100,
   canvas.height / 6,
   0,
-  10,
-  "white",
+  20,
+  "rgb(119, 88, 69)",
   "green"
 );
 
