@@ -48,14 +48,21 @@ function drawTree(startX, startY, len, angle, branchWidth, color1, color2) {
   ctx.save(); // guarda el estado actual del canvas
   ctx.strokeStyle = color1;
   ctx.fillStyle = color2;
+  ctx.shadowBlur = 10;
+  ctx.shadowColor = "rgb(2, 4, 15)";
   ctx.lineWidth = branchWidth;
   ctx.translate(startX, startY);
   ctx.rotate((angle * Math.PI) / 180); // se pasa el angulo en grados, se lo conviere a radianes
   ctx.moveTo(0, 0); //comienza un nuevo subpath en el punto especificado
-  ctx.lineTo(0, -len); //len es la longitud del segmento, con y negativo para que vaya hacia arriba (?)
+  // ctx.lineTo(0, -len); // Cambio lineas por curvas
+  if (angle < 0) {
+    ctx.bezierCurveTo(10, -len / 2, 10, -len / 2, 0, -len);
+  } else {
+    ctx.bezierCurveTo(10, -len / 2, -10, -len / 2, 0, -len);
+  }
   ctx.stroke();
+  //corte para evitar un bucle infinito
   if (len < 10) {
-    //corto para evitar un bucle infinito
     // Dibujo las hojas:
     ctx.beginPath();
     ctx.arc(0, -len, 10, 0, Math.PI / 2);
@@ -79,7 +86,7 @@ drawTree(
   canvas.height / 6,
   0,
   20,
-  "rgb(119, 88, 69)",
+  "rgb(148, 121, 104)",
   "green"
 );
 
@@ -99,7 +106,7 @@ for (let i = 0; i < selects.length; i++) {
       canvas.height / 6,
       0,
       15,
-      "white",
+      "rgb(148, 121, 104)",
       "green"
     );
   });
