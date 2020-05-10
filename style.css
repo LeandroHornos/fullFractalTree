@@ -13,7 +13,7 @@ h4 {
 }
 
 body {
-  background: black;
+  background: rgb(2, 4, 15);
   color: white;
 }
 
@@ -22,12 +22,15 @@ h1 {
   padding: 5px;
   font-family: "Caveat", cursive;
   font-size: 2.5em;
+  color: rgb(245, 126, 47)
 }
 
 p {
   text-align: center;
   padding: 2px;
   font-size: 0.9em;
+  width: 60%;
+  margin: auto;
 }
 
 /* Modo nocturno */
@@ -59,7 +62,7 @@ canvas {
 #control-panel {
   display: flex;
   justify-content: space-around;
-  background: rgba(255, 72, 0, 0.5);
+  background: rgba(168, 165, 163, 0.5);
   width: 80%;
   margin: auto;
   min-height: 50px;
